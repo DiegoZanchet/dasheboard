@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#12343b" />
+  <meta name="description" content="DashEnergia: dashboard didático de consumo de energia elétrica residencial." />
+  <title>DashEnergia — do dado à decisão</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="#inicio" aria-label="Ir para o início">
+      <span class="brand-mark" aria-hidden="true">ϟ</span><span>dash<span>energia</span></span>
+    </a>
+    <nav class="main-nav" aria-label="Navegação principal">
+      <a href="#painel">Painel</a><a href="#dados">Dados</a><a href="#aprendizado">Aprendizado</a>
+    </nav>
+    <div class="top-meta"><span class="live-dot"></span> estudo em andamento <span class="class-tag">2ª D</span></div>
+  </header>
+
+  <main>
+    <section class="hero wrap" id="inicio">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-line"></span> COLÉGIO ESTADUAL EUCLIDES DA CUNHA</div>
+        <h1>Do dado à<br /><em>decisão.</em></h1>
+        <p class="hero-lede">Um olhar visual sobre o consumo de energia em casa — porque entender os números é o primeiro passo para mudar hábitos.</p>
+        <div class="hero-actions"><a class="button button-dark" href="#painel">Explorar painel <span>↘</span></a><span class="hero-note">Dados fictícios<br />para fins didáticos</span></div>
+      </div>
+      <div class="hero-art" aria-label="Ilustração de uma casa economizando energia">
+        <div class="sun">☼</div><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="house"><div class="roof"></div><div class="house-body"><div class="window window-a"></div><div class="window window-b"></div><div class="door"></div></div></div>
+        <div class="bolt">ϟ</div><div class="art-caption">consumo residencial<br /><b>jan → jun</b></div>
+      </div>
+    </section>
+
+    <section class="intro-strip wrap" aria-label="Contexto da atividade">
+      <div><span class="strip-number">01</span><strong>O contexto</strong></div>
+      <p>Planilhas contam histórias linha por linha. Um dashboard transforma esse volume em sinais que ajudam a responder: <b>onde a energia está indo?</b></p>
+      <div class="strip-arrow">↓</div>
+    </section>
+
+    <section class="dashboard wrap" id="painel">
+      <div class="section-heading"><div><span class="section-kicker">VISÃO GERAL · 2026</span><h2>Veja onde a energia está indo.</h2></div><div class="source-pill"><span class="pulse"></span> dados simulados</div></div>
+      <div class="filters card-surface">
+        <div class="filter-label"><span class="filter-icon">⌁</span><span>Filtre a leitura</span></div>
+        <label>Mês<select id="monthFilter"><option value="all">Todos os meses</option></select></label>
+        <label>Aparelho<select id="applianceFilter"><option value="all">Todos os aparelhos</option></select></label>
+        <button class="reset-button" id="resetFilters" type="button">Limpar filtros ↺</button>
+      </div>
+
+      <div class="kpi-grid" aria-live="polite">
+        <article class="kpi-card kpi-main"><div class="kpi-label">CONSUMO TOTAL</div><div class="kpi-value"><span id="totalConsumption">1.388</span><small>kWh</small></div><div class="kpi-foot"><span class="trend down">↓ 39,8%</span><span>jan → jun</span></div><div class="kpi-spark"><i style="height:92%"></i><i style="height:83%"></i><i style="height:69%"></i><i style="height:56%"></i><i style="height:45%"></i><i style="height:48%"></i></div></article>
+        <article class="kpi-card"><div class="kpi-label">MÉDIA MENSAL</div><div class="kpi-value"><span id="avgConsumption">231</span><small>kWh</small></div><div class="kpi-foot"><span>por mês</span><span class="tiny-bar"><i></i></span></div></article>
+        <article class="kpi-card"><div class="kpi-label">MAIOR CONSUMIDOR</div><div class="kpi-value text-value" id="topAppliance">Ar-condicionado</div><div class="kpi-foot"><span id="topApplianceUsage">329 kWh</span><span>no período</span></div><div class="mini-icon">❄</div></article>
+        <article class="kpi-card kpi-cost"><div class="kpi-label">CUSTO ESTIMADO</div><div class="kpi-value"><small>R$</small><span id="totalCost">1.179,80</span></div><div class="kpi-foot"><span>tarifa fixa</span><span>R$ 0,85/kWh</span></div></article>
+      </div>
+
+      <div class="chart-grid">
+        <article class="panel chart-panel wide"><div class="panel-head"><div><span class="panel-kicker">EVOLUÇÃO</span><h3>Consumo por mês</h3></div><span class="panel-unit">kWh</span></div><div class="line-chart" id="lineChart" role="img" aria-label="Gráfico de linha do consumo por mês"></div><div class="chart-legend"><span class="legend-dot"></span> consumo residencial <span class="legend-note">menor é melhor</span></div></article>
+        <article class="panel chart-panel"><div class="panel-head"><div><span class="panel-kicker">RANKING</span><h3>Quem mais consome?</h3></div><span class="panel-unit">kWh</span></div><div class="bar-chart" id="barChart" role="img" aria-label="Gráfico de barras do consumo por aparelho"></div><div class="chart-footnote">Total acumulado no período selecionado</div></article>
+      </div>
+
+      <div class="lower-grid">
+        <article class="panel table-panel" id="dados"><div class="panel-head"><div><span class="panel-kicker">CONFERÊNCIA</span><h3>Tabela de dados</h3></div><button class="download-button" id="downloadData" type="button">baixar CSV <span>↓</span></button></div><div class="table-scroll"><table><thead><tr><th>Mês</th><th>Aparelho</th><th>Consumo</th><th>Custo estimado</th></tr></thead><tbody id="dataTable"></tbody></table></div><div class="table-total"><span>registros exibidos <b id="recordCount">30</b></span><strong id="filteredTotal">1.388 kWh</strong></div></article>
+        <article class="panel cost-panel"><div class="panel-head"><div><span class="panel-kicker">IMPACTO</span><h3>Custo mensal</h3></div><span class="panel-unit">R$</span></div><div class="cost-chart" id="costChart" role="img" aria-label="Gráfico de barras do custo mensal"></div><div class="cost-callout"><span class="callout-arrow">↗</span><div><b id="bestMonth">Maio</b> é o mês mais econômico.<br /><small>economize hoje, respire amanhã.</small></div></div></article>
+      </div>
+    </section>
+
+    <section class="learning wrap" id="aprendizado">
+      <div class="section-heading"><div><span class="section-kicker">02 · APRENDIZADO</span><h2>O que os dados ensinam.</h2></div><p class="heading-note">Um bom dashboard não só mostra. Ele explica.</p></div>
+      <div class="concept-grid"><article class="concept-card concept-data"><span class="concept-index">A</span><span class="concept-symbol">⌁</span><h3>Dado</h3><p>Uma informação registrada, como <b>“Ar-condicionado · janeiro · 110 kWh”</b>. É a matéria-prima da análise.</p></article><article class="concept-card concept-kpi"><span class="concept-index">B</span><span class="concept-symbol">#</span><h3>Indicador <small>(KPI)</small></h3><p>Um número resumido que ajuda a acompanhar o cenário: <b>1.388 kWh</b> consumidos no total.</p></article><article class="concept-card concept-insight"><span class="concept-index">C</span><span class="concept-symbol">↗</span><h3>Insight</h3><p>Uma conclusão que vira ação: <b>o chuveiro é o segundo maior consumidor</b>; banhos mais curtos podem fazer diferença.</p></article></div>
+      <div class="insight-board"><div class="insight-stamp">LEITURA<br /><b>01</b></div><div><span class="panel-kicker">INSIGHT DO PERÍODO</span><h3>O consumo caiu quase 40% de janeiro a junho.</h3><p>O ar-condicionado lidera o uso no semestre, mas maio é o mês mais econômico. A pergunta agora é: <em>qual hábito explica essa mudança?</em></p></div><div class="insight-number">−39,8<small>%</small></div></div>
+    </section>
+
+    <section class="verification wrap"><div class="verify-copy"><span class="section-kicker">03 · VERIFICAÇÃO</span><h2>Confie no cálculo.<br /><em>Confira a conta.</em></h2><p>O KPI só é útil quando bate com os dados. A soma das mini-tabelas mensais confirma o total exibido no painel:</p></div><div class="formula-card"><div class="formula-label">SOMA DO PERÍODO</div><div class="formula">299 + 277 + 237<br />+ 202 + 181 + 192</div><div class="formula-result">= <b>1.388 kWh</b></div><div class="formula-note">1.388 × R$ 0,85 = <b>R$ 1.179,80</b></div></div></section>
+
+    <section class="closing wrap"><div class="closing-mark">ϟ</div><div><span class="section-kicker">CONCLUSÃO</span><h2>Dados fictícios,<br /><em>decisões reais.</em></h2><p>Este painel foi criado para a atividade de Desenvolvimento de Sistemas · Prof. Maicon Kirsten.</p></div><a class="button button-yellow" href="#inicio">voltar ao topo ↑</a></section>
+  </main>
+  <footer class="footer wrap"><span>DashEnergia · Matelândia-PR</span><span>atividade escolar · dados fictícios</span><span>2ª D · 2026</span></footer>
+  <script src="script.js"></script>
+</body>
+</html>
